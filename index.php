@@ -19,33 +19,73 @@
             <?php echo "Celle-ci a été écrite entièrement en PHP."; ?>
         </p>
 
-        <!--Les variables-->
+        <!--Les conditions-->
+        <!--Ici, on demande à PHP : si la variable$ageest inférieure ou égale à 12, affiche « Salut gamin ! ».-->
         <?php
-        $age_du_visiteur = 17;
-        echo $age_du_visiteur; //Afficher les variables.
-        ?>
+        $age = 8;
 
-        <?php
-        $age_du_visiteur = 17;
-        echo 'Le visiteur a ' . $age_du_visiteur . ' ans';//Afficher les variables la bonne écriture. 
+        if ($age <= 12)
+        {
+            echo "Salut gamin !";
+        }
         ?>
         
-        <!--Les calcules-->
+        <!--Ensuite, vous avez remarqué que j'ai ajouté le motelse(« sinon »). En clair, on demande : 
+        Si l'âge est inférieur ou égal à 12 ans, fais ceci, sinon fais cela.-->
         <?php
-        $nombre = 2 + 4; // $nombre prend la valeur 6
-        $nombre = 5 - 1; // $nombre prend la valeur 4
-        $nombre = 3 * 5; // $nombre prend la valeur 15
-        $nombre = 10 / 2; // $nombre prend la valeur 5
-
-        // Allez on rajoute un peu de difficulté
-        $nombre = 3 * 5 + 1; // $nombre prend la valeur 16
-        $nombre = (1 + 2) * 2; // $nombre prend la valeur 6
-        ?>
+        $age = 8;
         
-        <?php
-        $nombre = 10;
-        $resultat = ($nombre + 5) * $nombre; // $resultat prend la valeur 150
+        if ($age <= 12) // SI l'âge est inférieur ou égal à 12
+        {
+            echo "Salut gamin ! Bienvenue sur mon site !<br />";
+            $autorisation_entrer = "Oui";
+        }
+        else // SINON
+        {
+            echo "Ceci est un site pour enfants, vous êtes trop vieux pour pouvoir  entrer. Au revoir !<br />";
+            $autorisation_entrer = "Non";
+        }
+        
+        echo "Avez-vous l'autorisation d'entrer ? La réponse est : $autorisation_entrer";
         ?>
+
+        <!--La principale nouveauté ici, c'est le mot-cléelseifqui signifie « sinon si ». Dans l'ordre, 
+        PHP rencontre les conditions suivantes :-->
+
+        <!--1-si ($autorisation_entrer) est égale à « Oui », tu exécutes ces instructions…-->
+        <!--2-sinon si ($autorisation_entrer) est égale à « Non », tu exécutes ces autres instructions…-->
+        <!--3-sinon, tu redemandes l'âge pour savoir si on a ou non l'autorisation d'entrer.-->
+        <?php
+        $autorisation_entrer = "Oui";
+
+        if ($autorisation_entrer == "Oui") // SI on a l'autorisation d'entrer
+        {
+            // instructions à exécuter quand on est autorisé à entrer
+        }
+        elseif ($autorisation_entrer == "Non") // SINON SI on n'a pas l'autorisation d'entrer
+        {
+            // instructions à exécuter quand on n'est pas autorisé à entrer
+        }
+        else // SINON (la variable ne contient ni Oui ni Non, on ne peut pas agir)
+        {
+            echo "Euh, je ne connais pas ton âge, tu peux me le rappeler s'il te plaît ?";
+        }
+        ?>
+
+        <p>Le cas des booléens</p>
+        <?php
+        $autorisation_entrer = true;
+
+        if ($autorisation_entrer == true)
+        {
+            echo "Bienvenue petit nouveau. :o)";
+        }
+        elseif ($autorisation_entrer == false)
+        {
+            echo "T'as pas le droit d'entrer !";
+        }
+        ?>
+
 
         <script src="" async defer></script>
     </body>

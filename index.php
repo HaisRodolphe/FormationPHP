@@ -85,7 +85,53 @@
             echo "T'as pas le droit d'entrer !";
         }
         ?>
+        <!--En effet, si vous « lisez » la première ligne, ça donne : « SI on a l'autorisation d'entrer… ».
+C'est donc un raccourci à connaître quand on travaille sur des booléens.-->
+        <?php
+        $autorisation_entrer = true;
 
+        if ($autorisation_entrer)
+        {
+            echo "Bienvenue petit nouveau. :o)";
+        }
+        else
+        {
+            echo "T'as pas le droit d'entrer !";
+        }
+        ?>
+
+        <!--Il y a un symbole qui permet de vérifier 
+        si la variable vautfalse : le point d'exclamation (!). On écrit :-->
+        <!--C'est une autre façon de faire. Si vous préférez mettreif ($autorisation_entrer == false)
+        c'est tout aussi bien, mais la méthode « courte » est plus lisible.-->
+        <?php
+        $autorisation_entrer = true;
+
+        if (! $autorisation_entrer)
+        {
+
+        }
+        ?>
+
+        <!--Des conditions multiples-->
+        
+        <!-- si l'âge est inférieur ou égal à 12 ans et que le visiteur parle français, 
+        on lui affiche un message de bienvenue en français. Sinon, si le visiteur parle anglais, 
+        on affiche un message en anglais.-->
+        <?php
+        $age = 8;
+        $langue = "anglais";
+
+
+        if ($age <= 12 AND $langue == "français")
+        {
+            echo "Bienvenue sur mon site !";
+        }
+        elseif ($age <= 12 AND $langue == "anglais")
+        {
+            echo "Welcome to my website!";
+        }
+        ?>
 
         <script src="" async defer></script>
     </body>

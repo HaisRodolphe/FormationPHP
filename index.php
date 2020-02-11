@@ -133,6 +133,159 @@ C'est donc un raccourci à connaître quand on travaille sur des booléens.-->
         }
         ?>
 
+        <!--Exemple 2 avec "OR"-->
+        <?php
+        $pays = "France";
+
+        if ($pays == "France" OR $pays == "Belgique")
+        {
+            echo "Bienvenue sur notre site !";
+        }
+        else
+        {
+            echo "Désolés, notre service n'est pas encore disponible dans votre pays !";
+        }
+        ?>
+
+        <!--L'astuce bonus-->
+        <!--les deux codes ci-dessous donnent exactement le même résultat-->
+        <?php
+        $variable = 23;
+
+        if ($variable == 23)
+        {
+            echo '<strong>Bravo !</strong> Vous avez trouvé le nombre mystère !';
+        }
+        ?>
+        <!--et-->
+        <?php
+        $variable = 23;
+
+        if ($variable == 23)
+        {
+        ?>
+        <strong>Bravo !</strong> Vous avez trouvé le nombre mystère !
+        <?php
+        }
+        ?>
+
+        <!--Un autre type de condition bien pratique : switch-->
+        <!--En théorie, les structures à base de if… elseif… elseque je viens 
+        de vous montrer suffisent pour traiter n'importe quelle condition.-->
+        <!--Pour vous faire comprendre l'intérêt deswitch, je vais vous donner un 
+        exemple un peu lourd avec lesifetelseifque vous venez d'apprendre :-->
+        <?php
+        $note = 16;
+
+        if ($note == 0)
+        {
+            echo "Tu es vraiment un gros nul !!!";
+        }
+
+        elseif ($note == 5)
+        {
+            echo "Tu es très mauvais";
+        }
+
+        elseif ($note == 7)
+        {
+            echo "Tu es mauvais";
+        }
+
+        elseif ($note == 10)
+        {
+            echo "Tu as pile poil la moyenne, c'est un peu juste…";
+        }
+
+        elseif ($note == 12)
+        {
+            echo "Tu es assez bon";
+        }
+
+        elseif ($note == 16)
+        {
+            echo "Tu te débrouilles très bien !";
+        }
+
+        elseif ($note == 20)
+        {
+            echo "Excellent travail, c'est parfait !";
+        }
+
+        else
+        {
+            echo "Désolé, je n'ai pas de message à afficher pour cette note";
+        }
+        ?>
+        <!--Comme vous le voyez, c'est lourd, long, et répétitif. Dans ce cas, 
+        on peut utiliser une autre structure plus souple : c'est switch.-->
+        <!--Voici le même exemple avec switch(le résultat est le même,
+         mais le code est plus adapté) :-->
+        <?php
+        $note = 10;
+
+        switch ($note) // on indique sur quelle variable on travaille
+        { 
+            case 0: // dans le cas où $note vaut 0
+                echo "Tu es vraiment un gros nul !!!";
+            break;
+                
+            case 5: // dans le cas où $note vaut 5
+                echo "Tu es très mauvais";
+            break;
+                
+            case 7: // dans le cas où $note vaut 7
+                echo "Tu es mauvais";
+            break;
+                
+            case 10: // etc. etc.
+                echo "Tu as pile poil la moyenne, c'est un peu juste…";
+            break;
+                
+            case 12:
+                echo "Tu es assez bon";
+            break;
+                
+            case 16:
+                echo "Tu te débrouilles très bien !";
+            break;
+                
+            case 20:
+                echo "Excellent travail, c'est parfait !";
+            break;
+                
+            default:
+                echo "Désolé, je n'ai pas de message à afficher pour cette note";
+        }
+        ?>
+
+        <!--Les ternaires : des conditions condensées-->
+        <!--Prenons cet exemple à base deif… elsequi met un booléen "$majeur" à vrai 
+        ou faux selon l'âge du visiteur :-->
+        <?php
+        $age = 24;
+
+        if ($age >= 18)
+        {
+            $majeur = true;
+        }
+        else
+        {
+            $majeur = false;
+        }
+        ?>
+        <!--On peut faire la même chose en une seule ligne grâce à une structure ternaire :-->
+        <?php
+        $age = 24;
+
+        $majeur = ($age >= 18) ? true : false;
+       
+       ?>
+       <!--La condition testée est$age >= 18. Si c'est vrai, alors la valeur indiquée après 
+       le point d'interrogation (icitrue) sera affectée à la variable$majeur. Sinon, 
+       c'est la valeur qui suit le symbole « deux-points » qui sera affectée à$majeur.-->
+
+
         <script src="" async defer></script>
     </body>
 </html>

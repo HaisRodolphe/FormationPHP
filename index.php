@@ -24,5 +24,25 @@ while ($nombre_de_lignes <= 100)
 }
 ?>
 
+<!--On peut écrire de la même manière une centaine de lignes, 
+mais chacune peut être différente (on n'est pas obligés d'écrire la même chose à chaque fois).
+Cet exemple devrait vous montrer que la valeur de la variable augmente à chaque 
+passage dans la boucle :-->
+
+<!--Voilà, c'est tout bête, et cet exemple ressemble beaucoup au précédent. La particularité, 
+là, c'est qu'on affiche à chaque fois la valeur de$nombre_de_lignes
+(ça vous permet de voir que sa valeur augmente petit à petit).-->
+<?php
+$nombre_de_lignes = 1;
+
+while ($nombre_de_lignes <= 100)
+{
+    echo 'Ceci est la ligne n°' . $nombre_de_lignes . '<br />';
+    $nombre_de_lignes++;
+}
+?>
+
+
+
 
 

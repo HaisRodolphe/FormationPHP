@@ -43,7 +43,7 @@ while ($nombre_de_lignes <= 100)
 ?>
 
 <!--Une boucle plus complexe : for-->
-<!--forest un autre type de boucle, dans une forme un peu plus 
+<!--for est un autre type de boucle, dans une forme un peu plus 
 condensée et plus commode à écrire, ce qui fait queforest assez fréquemment utilisé.-->
 
 <?php

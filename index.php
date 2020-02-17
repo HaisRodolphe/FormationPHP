@@ -42,7 +42,20 @@ while ($nombre_de_lignes <= 100)
 }
 ?>
 
+<!--Une boucle plus complexe : for-->
+<!--forest un autre type de boucle, dans une forme un peu plus 
+condensée et plus commode à écrire, ce qui fait queforest assez fréquemment utilisé.-->
 
+<?php
+for ($nombre_de_lignes = 1; $nombre_de_lignes <= 100; $nombre_de_lignes++)
+{
+    echo 'Ceci est la ligne n°' . $nombre_de_lignes . '<br />';
+}
+?>
 
+<!--Bon, vous vous en doutez, je ne vais vous expliquer que la ligne dufor, 
+le reste n'ayant pas changé.
 
+Après le motfor, il y a des parenthèses qui contiennent trois éléments, 
+séparés par des points-virgules;.-->
 

@@ -1,6 +1,3 @@
-<!--Les Tableaux-->
-<!--Les deux types de tableaux-->
-
 <?php
 $prenom = 'Nicole';
 echo 'Bonjour ' . $prenom; // Cela affichera : Bonjour Nicole

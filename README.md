@@ -1,404 +1,392 @@
 # FormationPHP
-Les tableaux
-Nous abordons ici un aspect très important du PHP : les arrays.
-
-Vous allez voir qu'il s'agit de variables « composées », que l'on peut imaginer sous la forme de tableaux.
-
-On peut faire énormément de choses avec les arrays et leur utilisation n'est pas toujours très facile. Cependant, ils vont très rapidement nous devenir indispensables et vous devez bien comprendre leur fonctionnement. Si vous y parvenez, nous aurons fait le tour des bases du PHP et vous serez fin prêts pour la suite, qui s'annonce concrète et passionnante.
-
-Les deux types de tableaux
-Un tableau (aussi appelé array) est une variable. Mais une variable un peu spéciale.
-
-Reprenons. Jusqu'ici vous avez travaillé avec des variables toutes simples : elles ont un nom et une valeur. Par exemple :
-
-<?php
-$prenom = 'Nicole';
-echo 'Bonjour ' . $prenom; // Cela affichera : Bonjour Nicole
-?>
-Ce qui peut se matérialiser sous la forme :
-
-Nom
-
-Valeur
-
-$prenom
-
-Nicole
-
-Ici, nous allons voir qu'il est possible d'enregistrer de nombreuses informations dans une seule variable grâce aux tableaux. On en distingue deux types :
-
-les tableaux numérotés ;
-
-les tableaux associatifs.
-
-Les tableaux numérotés
-Ces tableaux sont très simples à imaginer. Regardez par exemple celui-ci, contenu de la variable$prenoms :
-
-Clé
-
-Valeur
-
-0
-
-François
-
-1
-
-Michel
-
-2
-
-Nicole
-
-3
-
-Véronique
-
-4
-
-Benoît
-
-…
-
-…
-
-$prenomsest un array : c'est ce qu'on appelle une variable « tableau ». Elle n'a pas qu'une valeur, mais plusieurs (vous pouvez en mettre autant que vous voulez).
-
-Dans un array, les valeurs sont rangées dans des « cases » différentes. Ici, nous travaillons sur un array numéroté, c'est-à-dire que chaque case est identifiée par un numéro. Ce numéro est appelé clé.
-
-Attention ! Un array numéroté commence toujours à la case n°0 ! Ne l'oubliez jamais, ou vous risquez de faire des erreurs par la suite…
-
-Construire un tableau numéroté
-Pour créer un tableau numéroté en PHP, on utilise généralement la fonctionarray.
-
-Cet exemple vous montre comment créer l'array$prenoms :
-
-<?php
-// La fonction array permet de créer un array
-$prenoms = array ('François', 'Michel', 'Nicole', 'Véronique', 'Benoît');
-?>
-L'ordre a beaucoup d'importance. Le premier élément (« François ») aura le n°0, ensuite Michel le n°1, etc.
-
-Vous pouvez aussi créer manuellement le tableau case par case :
-
-<?php
-$prenoms[0] = 'François';
-$prenoms[1] = 'Michel';
-$prenoms[2] = 'Nicole';
-?>
-Si vous ne voulez pas avoir à écrire vous-mêmes le numéro de la case que vous créez, vous pouvez laisser PHP le sélectionner automatiquement en laissant les crochets vides :
-
-<?php
-$prenoms[] = 'François'; // Créera $prenoms[0]
-$prenoms[] = 'Michel'; // Créera $prenoms[1]
-$prenoms[] = 'Nicole'; // Créera $prenoms[2]
-?>
-Afficher un tableau numéroté
-Pour afficher un élément, il faut donner sa position entre crochets après$prenoms. Cela revient à dire à PHP :
-
-« Affiche-moi le contenu de la case n°1 de$prenoms. »
-
-Pour faire cela en PHP, il faut écrire le nom de la variable, suivi du numéro entre crochets. Pour afficher « Michel », on doit donc écrire :
-
-<?php
-echo $prenoms[1];
-?>
-C'est tout bête du moment que vous n'oubliez pas que Michel est en seconde position et donc qu'il a le numéro 1 (étant donné qu'on commence à compter à partir de 0).
-
-Si vous oubliez de mettre les crochets, ça ne marchera pas (ça affichera juste « Array »…). Dès que vous travaillez sur des arrays, vous êtes obligés d'utiliser les crochets pour indiquer dans quelle « case » on doit aller chercher l'information, sinon PHP ne sait pas quoi récupérer.
-
-Les tableaux associatifs
-Les tableaux associatifs fonctionnent sur le même principe, sauf qu'au lieu de numéroter les cases, on va les étiqueter en leur donnant à chacune un nom différent.
-
-Par exemple, supposons que je veuille, dans un seul array, enregistrer les coordonnées de quelqu'un (nom, prénom, adresse, ville, etc.). Si l'array est numéroté, comment savoir que le n°0 est le nom, le n°1 le prénom, le n°2 l'adresse… ? C'est là que les tableaux associatifs deviennent utiles.
-
-Construire un tableau associatif
-Pour en créer un, on utilisera la fonctionarraycomme tout à l'heure, mais on va mettre « l'étiquette » devant chaque information :
-
-<?php
-// On crée notre array $coordonnees
-$coordonnees = array (
-    'prenom' => 'François',
-    'nom' => 'Dupont',
-    'adresse' => '3 Rue du Paradis',
-    'ville' => 'Marseille');
-?>
-Note importante : il n'y a ici qu'une seule instruction (un seul point-virgule). J'aurais pu tout mettre sur la même ligne, mais rien ne m'empêche de séparer ça sur plusieurs lignes pour que ce soit plus facile à lire.
-
-Vous remarquez qu'on écrit une flèche (=>) pour dire « associé à ». Par exemple, on dit « ville » associée à « Marseille ».
-
-Nous avons créé un tableau qui ressemble à la structure suivante :
-
-Clé
-
-Valeur
-
-prenom
-
-François
-
-nom
-
-Dupont
-
-adresse
-
-3 Rue du Paradis
-
-ville
-
-Marseille
-
-Il est aussi possible de créer le tableau case par case, comme ceci :
-
-<?php
-$coordonnees['prenom'] = 'François';
-$coordonnees['nom'] = 'Dupont';
-$coordonnees['adresse'] = '3 Rue du Paradis';
-$coordonnees['ville'] = 'Marseille';
-?>
-Afficher un tableau associatif
-Pour afficher un élément, il suffit d'indiquer le nom de cet élément entre crochets, ainsi qu'entre guillemets ou apostrophes puisque l'étiquette du tableau associatif est un texte.
-
-Par exemple, pour extraire la ville, on devra taper :
-
-<?php
-echo $coordonnees['ville'];
-?>
-Ce code affiche : « Marseille ».
-
-Quand utiliser un array numéroté et quand utiliser un array associatif ?
-
-Comme vous l'avez vu dans mes exemples, ils ne servent pas à stocker la même chose…
-
-Les arrays numérotés permettent de stocker une série d'éléments du même type, comme des prénoms. Chaque élément du tableau contiendra alors un prénom.
-
-Les arrays associatifs permettent de découper une donnée en plusieurs sous-éléments. Par exemple, une adresse peut être découpée en nom, prénom, nom de rue, ville…
-
-Parcourir un tableau
-Lorsqu'un tableau a été créé, on a souvent besoin de le parcourir pour savoir ce qu'il contient. Nous allons voir trois moyens d'explorer un array :
-
-la bouclefor ;
-
-la boucleforeach ;
-
-la fonctionprint_r(utilisée principalement pour le débogage).
-
-La bouclefor
-Il est très simple de parcourir un tableau numéroté avec une bouclefor. En effet, puisqu'il est numéroté à partir de 0, on peut faire une boucleforqui incrémente un compteur à partir de 0 :
-
-<?php
-// On crée notre array $prenoms
-$prenoms = array ('François', 'Michel', 'Nicole', 'Véronique', 'Benoît');
-
-// Puis on fait une boucle pour tout afficher :
-for ($numero = 0; $numero < 5; $numero++)
-{
-    echo $prenoms[$numero] . '<br />'; // affichera $prenoms[0], $prenoms[1] etc.
+Tutoriel sur la création d'un panier en PHP
+Table des matièresPlier
+Introduction
+I. Procédure
+II. Création du script de fonctions
+II-A. Création du panier
+II-B. Ajout d'un article
+II-C. Suppression d'un article
+II-D. Modifier un article
+II-E. Montant du panier
+II-F. Quelques fonctions utiles
+III. Création du panier
+III-A. Affichage du panier
+III-B. Création des traitements
+III-C. Utilisation du panier
+IV. Pour aller plus loin
+V. Remerciements
+VI. Codes complets
+Cet article a pour but d'expliquer la création simple d'un panier en PHP.
+
+52 commentaires Donner une note � l'article (4.5)
+
+Article lu 123218 fois.
+
+L'auteur
+Joris CROZIER
+
+L'article
+Publié le 5 novembre 2007 - Mis à jour le 10 décembre 2019 
+
+Version PDF
+ePub, Azw et Mobi
+
+Liens sociaux
+Viadeo Twitter Facebook Share on Google+  Partager 
+Introduction▲
+Cet article montre une méthode simple pour créer un panier en PHP. Cet article s'adresse aux programmeurs débutants désirant créer simplement un panier pour leur site.
+Pour comprendre cet article, il vous faut connaitre un minimum :
+
+les bases de PHP ;
+les tableaux en PHP ;
+les sessions en PHP.
+I. Procédure▲
+Pour créer notre panier, nous allons procéder comme suit :
+
+un script fonctions-panier.php regroupera les diverses fonctions utiles au panier ;
+un script panier.php représentera le panier en lui-même et la base des appels aux fonctions.
+Pour rendre le panier plus sympa à utiliser, nous ajouterons quelques miettes de JavaScript !
+
+Dans notre exemple les articles ont trois propriétés :
+
+leur libellé ;
+leur quantité ;
+leur prix.
+Libre à vous d'en ajouter :-)
+
+Il est recommandé d'utiliser une version de PHP 4.2.0 au minimum dû à l'utilisation de la fonction array_search().
+
+II. Création du script de fonctions▲
+Nous allons dans un premier temps monter notre fichier de fonctions pour notre panier : fonctions-panier.php.
+
+II-A. Création du panier▲
+Nous allons commencer avec une fonction creationPanier():
+
+fonctions-panier.phpSélectionnez
+function creationPanier(){
+   if (!isset($_SESSION['panier'])){
+      $_SESSION['panier']=array();
+      $_SESSION['panier']['libelleProduit'] = array();
+      $_SESSION['panier']['qteProduit'] = array();
+      $_SESSION['panier']['prixProduit'] = array();
+      $_SESSION['panier']['verrou'] = false;
+   }
+   return true;
 }
-?>
-Affichage des valeurs du tableau
-Affichage des valeurs du tableau avec for
-Quand on écrit$prenoms[$numero], la variable$numeroest d'abord remplacée par sa valeur. Par exemple, si$numerovaut 2, alors cela signifie qu'on cherche à obtenir ce que contient$prenoms[2], c'est-à-dire… Nicole. Bravo, vous avez compris. :D
+Quelques explications
 
-La boucleforeach
-La bouclefora beau fonctionner, on peut utiliser un autre type de boucle plus adapté aux tableaux qu'on n'a pas encore vu jusqu'ici :foreach. C'est une sorte de boucleforspécialisée dans les tableaux.
+Dans un premier temps, on regarde si le panier existe, sinon on le crée.
+On retourne true pour des raisons de pratique lors des tests 'if'.
+La variable 'verrou' me permet de verrouiller toute action sur le panier, le verrou est à activer lorsque vous passez votre panier en paiement (non couvert dans cet article).
+II-B. Ajout d'un article▲
+Nous allons ajouter une fonction ajouterArticle() (toujours dans le fichier fonctions-panier.php, n'ayez crainte je fournis le code complet en fin d'article) :
 
-foreachva passer en revue chaque ligne du tableau, et lors de chaque passage, elle va mettre la valeur de cette ligne dans une variable temporaire (par exemple$element).
+fonctions-panier.phpSélectionnez
+function ajouterArticle($libelleProduit,$qteProduit,$prixProduit){
 
-Je parle chinois ? Regardez plutôt :
+   //Si le panier existe
+   if (creationPanier() && !isVerrouille())
+   {
+      //Si le produit existe déjà on ajoute seulement la quantité
+      $positionProduit = array_search($libelleProduit,  $_SESSION['panier']['libelleProduit']);
 
-<?php
-$prenoms = array ('François', 'Michel', 'Nicole', 'Véronique', 'Benoît');
-
-foreach($prenoms as $element)
-{
-    echo $element . '<br />'; // affichera $prenoms[0], $prenoms[1] etc.
-}
-?>
-Affichage des valeurs du tableau avec foreach
-Affichage des valeurs du tableau avec foreach
-C'est le même code que tout à l'heure mais cette fois basé sur une boucleforeach. À chaque tour de boucle, la valeur de l'élément suivant est mise dans la variable$element. On peut donc utiliser$elementuniquement à l'intérieur de la boucle afin d'afficher l'élément en cours.
-
-L'avantage deforeachest qu'il permet aussi de parcourir les tableaux associatifs.
-
-<?php
-$coordonnees = array (
-    'prenom' => 'François',
-    'nom' => 'Dupont',
-    'adresse' => '3 Rue du Paradis',
-    'ville' => 'Marseille');
-
-foreach($coordonnees as $element)
-{
-    echo $element . '<br />';
-}
-?>
-Parcourir les tableaux associatifs
-Parcourir les tableaux associatifs
-foreachva mettre tour à tour dans la variable$elementle prénom, le nom, l'adresse et la ville contenus dans l'array$coordonnees.
-
-On met donc entre parenthèses :
-
-d'abord le nom de l'array (ici$coordonnees) ;
-
-ensuite le mot-cléas(qui signifie quelque chose comme « en tant que ») ;
-
-enfin, le nom d'une variable que vous choisissez et qui va contenir tour à tour chacun des éléments de l'array (ici$element).
-
-Entre les accolades, on n'utilise donc que la variable$element.
-La boucle s'arrête lorsqu'on a parcouru tous les éléments de l'array.
-
-Toutefois, avec cet exemple, on ne récupère que la valeur. Or, on peut aussi récupérer la clé de l'élément. On doit dans ce cas écrireforeachcomme ceci :
-
-<?php foreach($coordonnees as $cle => $element) ?>
-À chaque tour de boucle, on disposera non pas d'une, mais de deux variables :
-
-$cle, qui contiendra la clé de l'élément en cours d'analyse (« prenom », « nom », etc.) ;
-
-$element, qui contiendra la valeur de l'élément en cours (« François », « Dupont », etc.).
-
-Testons le fonctionnement avec un exemple :
-
-<?php
-$coordonnees = array (
-    'prenom' => 'François',
-    'nom' => 'Dupont',
-    'adresse' => '3 Rue du Paradis',
-    'ville' => 'Marseille');
-
-foreach($coordonnees as $cle => $element)
-{
-    echo '[' . $cle . '] vaut ' . $element . '<br />';
-}
-?>
-Récupérer la clé de l'élément
-Récupérer la clé de l'élément
-Avec cette façon de procéder, vous avez maintenant dans la boucle la clé ET la valeur.
-
-Etforeach, croyez-moi, c'est une boucle vraiment pratique ! On s'en sert régulièrement !
-
-Afficher rapidement un array avecprint_r
-Parfois, en codant votre site en PHP, vous aurez sous les bras un array et vous voudrez savoir ce qu'il contient, juste pour votre information. Vous pourriez utiliser une boucleforou, mieux, une boucleforeach. Mais si vous n'avez pas besoin d'une mise en forme spéciale et que vous voulez juste savoir ce que contient l'array, vous pouvez faire appel à la fonctionprint_r. C'est une sorte deechospécialisé dans les arrays.
-
-Cette commande a toutefois un défaut : elle ne renvoie pas de code HTML comme<br />pour les retours à la ligne. Pour bien les voir, il faut donc utiliser la balise HTML<pre>qui nous permet d'avoir un affichage plus correct.
-
-<?php
-$coordonnees = array (
-    'prenom' => 'François',
-    'nom' => 'Dupont',
-    'adresse' => '3 Rue du Paradis',
-    'ville' => 'Marseille');
-
-echo '<pre>';
-print_r($coordonnees);
-echo '</pre>';
-?>
-Avec utilisation de la balise
-Avec utilisation de la balise <pre>
-Voilà, c'est facile à utiliser du moment qu'on n'oublie pas la balise<pre>pour avoir un affichage correct.
-
-Bien entendu, vous n'afficherez jamais des choses comme ça à vos visiteurs. On peut en revanche s'en servir pour le débogage, pendant la création du site, afin de voir rapidement ce que contient l'array.
-
-Rechercher dans un tableau
-Nous allons maintenant faire des recherches dans des arrays. Cela vous sera parfois très utile pour savoir si votre array contient ou non certaines informations.
-Nous allons voir trois types de recherches, basées sur des fonctions PHP :
-
-array_key_exists : pour vérifier si une clé existe dans l'array ;
-
-in_array : pour vérifier si une valeur existe dans l'array ;
-
-array_search : pour récupérer la clé d'une valeur dans l'array.
-
-Vérifier si une clé existe dans l'array :array_key_exists
-Voici notre problème : on a un array, mais on ne sait pas si la clé qu'on cherche s'y trouve.
-Pour vérifier ça, on va utiliser la fonctionarray_key_existsqui va parcourir le tableau pour nous et nous dire s'il contient cette clé.
-
-On doit d'abord lui donner le nom de la clé à rechercher, puis le nom de l'array dans lequel on fait la recherche :
-
-<?php array_key_exists('cle', $array); ?>
-La fonction renvoie un booléen, c'est-à-diretrue(vrai) si la clé est dans l'array, etfalse(faux) si la clé ne s'y trouve pas. Ça nous permet de faire un test facilement avec unif :
-
-<?php
-$coordonnees = array (
-    'prenom' => 'François',
-    'nom' => 'Dupont',
-    'adresse' => '3 Rue du Paradis',
-    'ville' => 'Marseille');
-
-if (array_key_exists('nom', $coordonnees))
-{
-    echo 'La clé "nom" se trouve dans les coordonnées !';
+      if ($positionProduit !== false)
+      {
+         $_SESSION['panier']['qteProduit'][$positionProduit] += $qteProduit ;
+      }
+      else
+      {
+         //Sinon on ajoute le produit
+         array_push( $_SESSION['panier']['libelleProduit'],$libelleProduit);
+         array_push( $_SESSION['panier']['qteProduit'],$qteProduit);
+         array_push( $_SESSION['panier']['prixProduit'],$prixProduit);
+      }
+   }
+   else
+   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
 }
 
-if (array_key_exists('pays', $coordonnees))
-{
-    echo 'La clé "pays" se trouve dans les coordonnées !';
+Quelques explications
+
+On vérifie en premier que le panier existe via notre fonction précédente creationPanier() et on vérifie que le panier n'est pas verrouillé.
+On regarde si l'article existe déjà :
+
+si oui on augmente sa quantité dans le panier ;
+sinon on l'ajoute.
+II-C. Suppression d'un article▲
+Pour être en mesure de supprimer un article, il nous faut également une fonction, la voici :
+
+fonctions-panier.phpSélectionnez
+function supprimerArticle($libelleProduit){
+   //Si le panier existe
+   if (creationPanier() && !isVerrouille())
+   {
+      //Nous allons passer par un panier temporaire
+      $tmp=array();
+      $tmp['libelleProduit'] = array();
+      $tmp['qteProduit'] = array();
+      $tmp['prixProduit'] = array();
+      $tmp['verrou'] = $_SESSION['panier']['verrou'];
+
+      for($i = 0; $i < count($_SESSION['panier']['libelleProduit']); $i++)
+      {
+         if ($_SESSION['panier']['libelleProduit'][$i] !== $libelleProduit)
+         {
+            array_push( $tmp['libelleProduit'],$_SESSION['panier']['libelleProduit'][$i]);
+            array_push( $tmp['qteProduit'],$_SESSION['panier']['qteProduit'][$i]);
+            array_push( $tmp['prixProduit'],$_SESSION['panier']['prixProduit'][$i]);
+         }
+
+      }
+      //On remplace le panier en session par notre panier temporaire à jour
+      $_SESSION['panier'] =  $tmp;
+      //On efface notre panier temporaire
+      unset($tmp);
+   }
+   else
+   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
 }
+Quelques explications
 
-?>
- 
+On vérifie en premier que le panier existe via notre fonction précédente creationPanier() (et on vérifie le verrou).
+On crée un panier « tampon » qui va être notre panier sans les éléments à supprimer.
+On remplit ledit panier « tampon ».
+On réaffecte notre panier via les valeurs du panier tampon que l'on supprime par la suite.
 
-Vérifier si la clé est dans l'array $coordonnees
-On ne trouvera que « nom », et pas « pays » (logique). Seule la première condition sera donc exécutée.
+Cette méthode nous permet de garder un panier sans fioritures, nous aurions pu simplement supprimer les valeurs correspondantes dans le premier panier, ce qui aurait eu pour effet de laisser des valeurs NULL dans le panier et l'aurait rendu peu pratique à l'utilisation !
 
-Vérifier si une valeur existe dans l'array :in_array
-Le principe est le même quearray_key_exists… mais cette fois on recherche dans les valeurs.in_arrayrenvoietruesi la valeur se trouve dans l'array,falsesi elle ne s'y trouve pas.
+II-D. Modifier un article▲
+Enfin il nous manque une fonction qui peut ne pas être mise en place, mais qui ajoute un grand confort à l'utilisation du panier, à savoir la modification de la quantité d'un article, la voici :
 
-Pour changer un peu de notre array$coordonnees, je vais en créer un nouveau (numéroté) composé de fruits. ;-)
+fonctions-panier.phpSélectionnez
+function modifierQTeArticle($libelleProduit,$qteProduit){
+   //Si le panier existe
+   if (creationPanier() && !isVerrouille())
+   {
+      //Si la quantité est positive on modifie sinon on supprime l'article
+      if ($qteProduit > 0)
+      {
+         //Recherche du produit dans le panier
+         $positionProduit = array_search($libelleProduit,  $_SESSION['panier']['libelleProduit']);
 
+         if ($positionProduit !== false)
+         {
+            $_SESSION['panier']['qteProduit'][$positionProduit] = $qteProduit ;
+         }
+      }
+      else
+      supprimerArticle($libelleProduit);
+   }
+   else
+   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
+}
+Quelques explications
+
+On vérifie en premier que le panier existe via notre fonction précédente creationPanier().
+Si la quantité demandée pour un produit est supérieure à 0 (et accessoirement celui-ci existe, mais il a peu de chances qu'on demande la modification d'un article qui n'existe pas).
+On la modifie.
+Si la quantité est négative ou nulle, cela revient à dire que l'on supprime l'article !
+II-E. Montant du panier▲
+Évidemment que serait notre panier s'il ne renvoyait pas le montant global des achats ?
+
+fonctions-panier.phpSélectionnez
+function MontantGlobal(){
+   $total=0;
+   for($i = 0; $i < count($_SESSION['panier']['libelleProduit']); $i++)
+   {
+      $total += $_SESSION['panier']['qteProduit'][$i] * $_SESSION['panier']['prixProduit'][$i];
+   }
+   return $total;
+}
+II-F. Quelques fonctions utiles▲
+Nous allons ajouter quelques fonctions utiles et en premier lieu la fonction de vérification du verrou :
+
+fonctions-panier.phpSélectionnez
+function isVerrouille(){
+   if (isset($_SESSION['panier']) && $_SESSION['panier']['verrou'])
+   return true;
+   else
+   return false;
+}
+Cette fonction vérifie seulement l'état du verrou sans affecter le panier.
+
+fonctions-panier.phpSélectionnez
+function compterArticles()
+{
+   if (isset($_SESSION['panier']))
+   return count($_SESSION['panier']['libelleProduit']);
+   else
+   return 0;
+
+}
+Quant à cette fonction-là, elle permet de compter le nombre d'articles différents dans le panier.
+Pour avoir le nombre d'articles en fonction de la quantité de chacun, il faudra parcourir les articles et prendre en compte chaque quantité (à vous de jouer !)
+
+fonctions-panier.phpSélectionnez
+function supprimePanier(){
+   unset($_SESSION['panier']);
+}
+Et une fonction qui peut s'avérer indispensable dans toute bonne boutique : la suppression du panier.
+
+III. Création du panier▲
+Nous allons créer un script que l'on appellera panier.php dans lequel nous allons afficher le panier, mais aussi appeler les fonctions créées précédemment !
+
+Avant toute chose il est important de placer la ligne session_start() au début de notre panier.php (et si possible sur toutes les autres pages de votre site afin d'éviter de perdre votre panier et autres informations en route).
+
+Ne mettez pas de session_start() dans le fichier fonctions-panier.php vous risqueriez d'obtenir des erreurs.
+
+III-A. Affichage du panier▲
+Dans un premier temps nous allons afficher le contenu du panier en traitant le cas où il serait vide : c'est le code qui sera exécuté par défaut dans notre script panier.php, le traitement se fera toujours avant l'affichage du panier :
+
+panier.phpSélectionnez
 <?php
-$fruits = array ('Banane', 'Pomme', 'Poire', 'Cerise', 'Fraise', 'Framboise');
+session_start();
+include_once("fonctions-panier.php");
 
-if (in_array('Myrtille', $fruits))
+echo '<?xml version="1.0" encoding="utf-8"?>';?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+<title>Votre panier</title>
+</head>
+<body>
+
+<form method="post" action="panier.php">
+<table style="width: 400px">
+    <tr>
+        <td colspan="4">Votre panier</td>
+    </tr>
+    <tr>
+        <td>Libellé</td>
+        <td>Quantité</td>
+        <td>Prix Unitaire</td>
+        <td>Action</td>
+    </tr>
+
+
+    <?php
+    if (creationPanier())
+    {
+        $nbArticles=count($_SESSION['panier']['libelleProduit']);
+        if ($nbArticles <= 0)
+        echo "<tr><td>Votre panier est vide </ td></tr>";
+        else
+        {
+            for ($i=0 ;$i < $nbArticles ; $i++)
+            {
+                echo "<tr>";
+                echo "<td>".htmlspecialchars($_SESSION['panier']['libelleProduit'][$i])."</ td>";
+                echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['panier']['qteProduit'][$i])."\"/></td>";
+                echo "<td>".htmlspecialchars($_SESSION['panier']['prixProduit'][$i])."</td>";
+                echo "<td><a href=\"".htmlspecialchars("panier.php?action=suppression&l=".rawurlencode($_SESSION['panier']['libelleProduit'][$i]))."\">XX</a></td>";
+                echo "</tr>";
+            }
+
+            echo "<tr><td colspan=\"2\"> </td>";
+            echo "<td colspan=\"2\">";
+            echo "Total : ".MontantGlobal();
+            echo "</td></tr>";
+
+            echo "<tr><td colspan=\"4\">";
+            echo "<input type=\"submit\" value=\"Rafraichir\"/>";
+            echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
+
+            echo "</td></tr>";
+        }
+    }
+    ?>
+</table>
+</form>
+</body>
+</html>
+Quelques explications
+
+On crée un tableau HTML pour la présentation de notre panier.
+S'il est vide, on le spécifie.
+Sinon on affiche les lignes de notre panier.
+La petite spécificité de notre exemple c'est que j'ai mis en place un formulaire pour gérer le changement de quantité d'un article !
+
+III-B. Création des traitements▲
+Dans notre exemple nous allons traiter les diverses actions via une variable $action passée en GET ou en POST (les deux fonctionnent).
+
+Notre variable débouchera donc sur un Switch qui appellera nos fonctions créées précédemment.
+Tout ceci avant l'affichage du panier.
+
+panier.phpSélectionnez
+$erreur = false;
+
+$action = (isset($_POST['action'])? $_POST['action']:  (isset($_GET['action'])? $_GET['action']:null )) ;
+if($action !== null)
 {
-    echo 'La valeur "Myrtille" se trouve dans les fruits !';
+   if(!in_array($action,array('ajout', 'suppression', 'refresh')))
+   $erreur=true;
+
+   //récuperation des variables en POST ou GET
+   $l = (isset($_POST['l'])? $_POST['l']:  (isset($_GET['l'])? $_GET['l']:null )) ;
+   $p = (isset($_POST['p'])? $_POST['p']:  (isset($_GET['p'])? $_GET['p']:null )) ;
+   $q = (isset($_POST['q'])? $_POST['q']:  (isset($_GET['q'])? $_GET['q']:null )) ;
+
+   //Suppression des espaces verticaux
+   $l = preg_replace('#\v#', '',$l);
+   //On vérifie que $p soit un float
+   $p = floatval($p);
+
+   //On traite $q qui peut être un entier simple ou un tableau d'entiers
+    
+   if (is_array($q)){
+      $QteArticle = array();
+      $i=0;
+      foreach ($q as $contenu){
+         $QteArticle[$i++] = intval($contenu);
+      }
+   }
+   else
+   $q = intval($q);
+    
 }
 
-if (in_array('Cerise', $fruits))
-{
-    echo 'La valeur "Cerise" se trouve dans les fruits !';
+if (!$erreur){
+   switch($action){
+      Case "ajout":
+         ajouterArticle($l,$q,$p);
+         break;
+
+      Case "suppression":
+         supprimerArticle($l);
+         break;
+
+      Case "refresh" :
+         for ($i = 0 ; $i < count($QteArticle) ; $i++)
+         {
+            modifierQTeArticle($_SESSION['panier']['libelleProduit'][$i],round($QteArticle[$i]));
+         }
+         break;
+
+      Default:
+         break;
+   }
 }
-?>
-Vérifier si la clé se trouve dans l'array $fruits
-Vérifier si une valeur existe dans l'array $fruits 
-On ne voit que le message pour la cerise, tout simplement parce quein_arraya renvoyétruepour « Cerise » etfalsepour « Myrtille ».
+Un grand soin est apporté à la vérification des variables transmises au panier pour éviter les injections de code ou les failles xss.
 
-Récupérer la clé d'une valeur dans l'array :array_search
-array_searchfonctionne commein_array : il travaille sur les valeurs d'un array. Voici ce que renvoie la fonction :
+L'utilisation du pattern '\v' nécessite une version de PHP 5.2.4, elle permet de supprimer les espaces verticaux superflus.
 
-si elle a trouvé la valeur,array_searchrenvoie la clé correspondante (c'est-à-dire le numéro si c'est un array numéroté, ou le nom de la clé si c'est un array associatif);
+Plus d'infos sur le pattern utilisé.
 
-si elle n'a pas trouvé la valeur,array_searchrenvoiefalse.
+III-C. Utilisation du panier▲
+Nous avons désormais toutes nos fonctions du panier et notre panier. Reste un petit détail : comment appeler le panier pour y ajouter un article ?
 
-On reprend l'array numéroté avec les fruits :
+Nous allons utiliser une fonction JavaScript à placer sur notre page de catalogue :
 
-<?php
-$fruits = array ('Banane', 'Pomme', 'Poire', 'Cerise', 'Fraise', 'Framboise');
+page d'un catalogueSélectionnez
+<a href="panier.php?action=ajout&amp;l=LIBELLEPRODUIT&amp;q=QUANTITEPRODUIT&amp;p=PRIXPRODUIT" onclick="window.open(this.href, '', 
+'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>
+Voilà, notre panier est opérationnel !
+Nous avons pu voir la création simple d'un panier, bien entendu vous pouvez maintenant partir de cet exemple pour faire un panier plus élaboré !
 
-$position = array_search('Fraise', $fruits);
-echo '"Fraise" se trouve en position ' . $position . '<br />';
+Bon développement !
 
-$position = array_search('Banane', $fruits);
-echo '"Banane" se trouve en position ' . $position;
-?>
-Récupérer la clé d'une valeur
-Récupérer la clé d'une valeur
-Je sais que je me répète, mais n'oubliez pas qu'un array numéroté commence à 0 ! Cela explique donc pourquoi on nous répond que « Banane » se trouve en position 0.
-
-Voilà donc les fonctions qu'il fallait connaître pour faire une recherche dans un array. Il y en a d'autres mais vous connaissez maintenant les principales.
-
-En résumé
-Les tableaux (ou arrays) sont des variables représentées sous forme de tableau. Elles peuvent donc stocker de grandes quantités d'informations.
-
-Chaque ligne d'un tableau possède une clé (qui permet de l'identifier) et une valeur.
-
-Il existe deux types de tableaux :
-
-les tableaux numérotés : chaque ligne est identifiée par une clé numérotée. La numérotation commence à partir de 0 ;
-
-les tableaux associatifs : chaque ligne est identifiée par une courte chaîne de texte.
-
-Pour parcourir un tableau, on peut utiliser la boucleforque l'on connaît déjà, mais aussi la boucleforeachqui est dédiée aux tableaux.
-
-Il existe de nombreuses fonctions permettant de travailler sur des tableaux et notamment d'effectuer des recherches.
+IV. Pour aller plus loin▲
+L'utilisation du panier peut aussi se faire via une base de données, afin de coller au plus près de la gestion des produits et des stocks.
+Cette partie sera sûrement abordée dans un prochain article sur la création avancée d'un panier en php et Mysql.
+En attendant, je vous renvoie sur un lien pour implémenter la gestion de la base avec votre panier : Utiliser une base de données pour sécuriser vos sessions

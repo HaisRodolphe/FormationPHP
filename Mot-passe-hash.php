@@ -30,3 +30,8 @@ $q->execute(array(
 'ip' => $SERVER['REMOTEADDR']
 ));
 ?>
+
+<!--Autre solution-->
+<?php       
+if(preg_match("#^[a-zA-Z0-9]{4,6}$#", $_POST['form_pseudo'])) $pseudo = $_POST['form_pseudo'];
+?>

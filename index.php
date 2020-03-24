@@ -138,6 +138,8 @@ $volume = VolumeCone(3, 1);
 echo 'Le volume d\'un cône de rayon 3 et de hauteur 1 est de ' . $volume;
 ?>
 
+<!--merci-->
+
 
 
 
